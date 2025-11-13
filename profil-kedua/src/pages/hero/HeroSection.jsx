@@ -4,7 +4,7 @@ export default function HeroSection(){
   return (
     <div className="flex flex-col-reverse lg:flex-row items-center gap-8">
       <div className="flex-1 text-center lg:text-left">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight text-gray-800">
           Halo, saya Henry. <span className="text-indigo-600">Frontend dev</span>
         </h1>
         <p className="mt-4 text-lg sm:text-xl text-slate-600">
