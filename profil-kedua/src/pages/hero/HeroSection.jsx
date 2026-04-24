@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { motion } from 'motion/react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import profile1 from '../../assets/profil1.jpg';
 import profile2 from '../../assets/profil2.png';
 import profile3 from '../../assets/profil3.png';
@@ -7,6 +7,19 @@ import profile3 from '../../assets/profil3.png';
 export default function HeroSection() {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
+
+  // State untuk Glitch Text Loop
+  const [textIndex, setTextIndex] = useState(0);
+  const words = ["HENRY.", "WEB DEV."]; // Kata yang mau di-loop
+
+  // Timer buat ganti teks tiap 3 detik
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTextIndex((prev) => (prev + 1) % words.length);
+    }, 4000); // 9000ms = 9 detik (bisa lu ubah kecepatannya di sini)
+    
+    return () => clearInterval(interval);
+  }, []);
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
@@ -32,9 +45,19 @@ export default function HeroSection() {
 
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-black uppercase tracking-tighter leading-[1.1]">
             HALO, SAYA <br />
-            <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-              HENRY.
-            </span>
+            {/* Animasi Transisi Teks (Glitch / Digital Reveal) */}
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={textIndex} // Key ini penting biar motion tau kapan harus re-animate
+                initial={{ opacity: 0, y: 15, skewX: 25, filter: "blur(8px)" }}
+                animate={{ opacity: 1, y: 0, skewX: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -15, skewX: -25, filter: "blur(8px)" }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent inline-block"
+              >
+                {words[textIndex]}
+              </motion.span>
+            </AnimatePresence>
           </h1>
 
           <p className="mt-6 text-gray-400 text-lg sm:text-xl max-w-md">
@@ -116,10 +139,11 @@ export default function HeroSection() {
               </p>
             </div>
           </div>
-
-          <button 
+        <motion.button 
             onClick={togglePlay}
-            className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 transition-transform"
+            className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center shadow-lg"
+            whileTap={{ scale: 0.90 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
             {isPlaying ? (
               <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
@@ -130,7 +154,7 @@ export default function HeroSection() {
                 <path d="M8 5v14l11-7z"/>
               </svg>
             )}
-          </button>
+          </motion.button>
           <audio ref={audioRef} src="/rxseboy.mp3" loop />
         </div>
       </motion.div>
