@@ -1,5 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'motion/react';
+import profile1 from '../../assets/profil1.jpg';
+import profile2 from '../../assets/profil2.png';
+import profile3 from '../../assets/profil3.png';
 
 export default function HeroSection() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -7,12 +10,11 @@ export default function HeroSection() {
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
-    // if (isPlaying) audioRef.current.pause();
-    // else audioRef.current.play();
+    if (isPlaying) audioRef.current.pause();
+    else audioRef.current.play();
   };
 
   return (
-    // Gw hapus wrapper section di sini karena udah di-handle sama IndexPages.jsx
     <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-stretch min-h-[75vh]">
       
       {/* === KIRI: TEKS & TOMBOL === */}
@@ -22,7 +24,6 @@ export default function HeroSection() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="flex flex-col justify-between h-full"
       >
-        {/* Konten Atas (Biar di-push ke tengah) */}
         <div className="flex-grow flex flex-col justify-center items-center text-center lg:items-start lg:text-left">
           <div className="flex items-center gap-2 bg-green-500/10 border border-green-500/20 px-3 py-1.5 rounded-full mb-8">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
@@ -53,7 +54,6 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Konten Bawah: Tombol */}
         <div className="mt-10 flex gap-4 justify-center lg:justify-start">
           <a href="#portfolio" className="btn bg-white text-black hover:bg-gray-200 border-none rounded-xl px-8">
             View Projects
@@ -69,20 +69,26 @@ export default function HeroSection() {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-        // lg:items-center biar fotonya bener-bener di tengah kolom
         className="flex flex-col items-center lg:items-center justify-between h-full relative"
       >
         {/* Konten Atas: Wadah Foto Profil */}
         <div className="flex-grow flex items-center justify-center relative w-full mt-10 lg:mt-0">
-          {/* Lingkaran Glow - Dibuat bener-bener center */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-purple-600/30 blur-[80px] rounded-full z-0"></div>
 
           <div className="relative z-10 w-64 h-64 sm:w-72 sm:h-72">
+            {/* Bagian overflow-hidden ini yang bikin gallery-nya tetep bentuk bulat */}
             <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 overflow-hidden flex items-center justify-center">
-              <span className="text-gray-500 font-medium">Foto Lu Di Sini</span>
+              
+              {/* Terapin Hover Gallery DaisyUI Di Sini */}
+              <figure className="hover-gallery w-full h-full">
+                <img src={profile1} alt="Profile 1" className="w-full h-full object-cover" />
+                <img src={profile2} alt="Profile 2" className="w-full h-full object-cover" />
+                <img src={profile3} alt="Profile 3" className="w-full h-full object-cover" />
+              </figure>
+
             </div>
             
-            <div className="absolute bottom-4 -left-4 bg-[#111] border border-gray-800 rounded-xl p-3 shadow-xl backdrop-blur-sm">
+            <div className="absolute bottom-4 -left-4 bg-[#111] border border-gray-800 rounded-xl p-3 shadow-xl backdrop-blur-sm z-20">
               <p className="text-sm font-bold text-white mb-1">Henry</p>
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
@@ -92,7 +98,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Konten Bawah: Spotify Card (Otomatis sejajar sama tombol di kiri) */}
+        {/* Konten Bawah: Spotify Card */}
         <div className="mt-10 w-full max-w-sm relative z-10 bg-[#121212]/80 backdrop-blur-xl border border-gray-800 rounded-2xl p-4 flex items-center justify-between group hover:border-gray-600 transition-colors">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center">
@@ -106,7 +112,7 @@ export default function HeroSection() {
                 {isPlaying ? 'Now Playing' : 'Not Playing'}
               </p>
               <p className="text-sm font-medium text-white">
-                {isPlaying ? 'Judul Lagu Lu' : 'Spotify'}
+                {isPlaying ? 'rxseboy - stay for the night' : 'Spotify'}
               </p>
             </div>
           </div>
@@ -125,7 +131,7 @@ export default function HeroSection() {
               </svg>
             )}
           </button>
-          <audio ref={audioRef} src="/path-ke-lagu-lu.mp3" loop />
+          <audio ref={audioRef} src="/rxseboy.mp3" loop />
         </div>
       </motion.div>
 
