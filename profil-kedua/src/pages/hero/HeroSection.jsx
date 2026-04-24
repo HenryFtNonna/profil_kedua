@@ -1,27 +1,134 @@
-import React from 'react'
+import React, { useState, useRef } from 'react';
+import { motion } from 'motion/react';
 
-export default function HeroSection(){
+export default function HeroSection() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
+
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
+    // if (isPlaying) audioRef.current.pause();
+    // else audioRef.current.play();
+  };
+
   return (
-    <div className="flex flex-col-reverse lg:flex-row items-center gap-8">
-      <div className="flex-1 text-center lg:text-left">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight text-gray-800">
-          Halo, saya Henry. <span className="text-indigo-600">Frontend dev</span>
-        </h1>
-        <p className="mt-4 text-lg sm:text-xl text-slate-600">
-          Saya bikin UI yang rapi dan gak berantakan. Contoh portfolio ada di bawah.
-        </p>
-        <div className="mt-6 flex justify-center lg:justify-start gap-4">
-          <a href="#portfolio" className="px-4 py-2 rounded-md bg-indigo-600 text-white">Lihat kerjaan</a>
-          <a href="#contact" className="px-4 py-2 rounded-md border">Hubungi</a>
-        </div>
-      </div>
+    // Gw hapus wrapper section di sini karena udah di-handle sama IndexPages.jsx
+    <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-stretch min-h-[75vh]">
+      
+      {/* === KIRI: TEKS & TOMBOL === */}
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="flex flex-col justify-between h-full"
+      >
+        {/* Konten Atas (Biar di-push ke tengah) */}
+        <div className="flex-grow flex flex-col justify-center items-center text-center lg:items-start lg:text-left">
+          <div className="flex items-center gap-2 bg-green-500/10 border border-green-500/20 px-3 py-1.5 rounded-full mb-8">
+            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+            <span className="text-green-500 text-xs font-mono font-semibold tracking-widest uppercase">Online</span>
+          </div>
 
-      <div className="flex-1 flex justify-center lg:justify-end">
-        {/* Ganti ini dengan image / ilustrasi */}
-        <div className="w-56 h-56 bg-slate-100 rounded-lg flex items-center justify-center">
-          <span className="text-slate-400">Illustrasi</span>
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-black uppercase tracking-tighter leading-[1.1]">
+            HALO, SAYA <br />
+            <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+              HENRY.
+            </span>
+          </h1>
+
+          <p className="mt-6 text-gray-400 text-lg sm:text-xl max-w-md">
+            Frontend Developer & Tech Enthusiast. Saya bikin UI yang rapi dan gak berantakan.
+          </p>
+
+          <div className="flex gap-4 mt-8">
+            {['Github', 'LinkedIn', 'Instagram', 'Email'].map((item, index) => (
+              <a 
+                key={index} 
+                href={`#${item.toLowerCase()}`} 
+                className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-400 hover:bg-gray-800 transition-all"
+              >
+                <span className="text-xs">{item[0]}</span>
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
+
+        {/* Konten Bawah: Tombol */}
+        <div className="mt-10 flex gap-4 justify-center lg:justify-start">
+          <a href="#portfolio" className="btn bg-white text-black hover:bg-gray-200 border-none rounded-xl px-8">
+            View Projects
+          </a>
+          <a href="#contact" className="btn btn-outline border-gray-700 text-white hover:bg-gray-800 hover:text-white hover:border-gray-600 rounded-xl px-8">
+            Contact Me
+          </a>
+        </div>
+      </motion.div>
+
+      {/* === KANAN: PROFIL & SPOTIFY === */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        // lg:items-center biar fotonya bener-bener di tengah kolom
+        className="flex flex-col items-center lg:items-center justify-between h-full relative"
+      >
+        {/* Konten Atas: Wadah Foto Profil */}
+        <div className="flex-grow flex items-center justify-center relative w-full mt-10 lg:mt-0">
+          {/* Lingkaran Glow - Dibuat bener-bener center */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-purple-600/30 blur-[80px] rounded-full z-0"></div>
+
+          <div className="relative z-10 w-64 h-64 sm:w-72 sm:h-72">
+            <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 overflow-hidden flex items-center justify-center">
+              <span className="text-gray-500 font-medium">Foto Lu Di Sini</span>
+            </div>
+            
+            <div className="absolute bottom-4 -left-4 bg-[#111] border border-gray-800 rounded-xl p-3 shadow-xl backdrop-blur-sm">
+              <p className="text-sm font-bold text-white mb-1">Henry</p>
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                <span className="text-green-500 text-xs font-mono">Available for Hire</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Konten Bawah: Spotify Card (Otomatis sejajar sama tombol di kiri) */}
+        <div className="mt-10 w-full max-w-sm relative z-10 bg-[#121212]/80 backdrop-blur-xl border border-gray-800 rounded-2xl p-4 flex items-center justify-between group hover:border-gray-600 transition-colors">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center">
+              <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+              </svg>
+            </div>
+            
+            <div>
+              <p className="text-xs text-gray-400 tracking-wider mb-1 uppercase font-semibold">
+                {isPlaying ? 'Now Playing' : 'Not Playing'}
+              </p>
+              <p className="text-sm font-medium text-white">
+                {isPlaying ? 'Judul Lagu Lu' : 'Spotify'}
+              </p>
+            </div>
+          </div>
+
+          <button 
+            onClick={togglePlay}
+            className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 transition-transform"
+          >
+            {isPlaying ? (
+              <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+              </svg>
+            ) : (
+              <svg className="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            )}
+          </button>
+          <audio ref={audioRef} src="/path-ke-lagu-lu.mp3" loop />
+        </div>
+      </motion.div>
+
     </div>
-  )
+  );
 }
