@@ -1,11 +1,14 @@
 import React from 'react'
 import IndexPages from './pages/IndexPages'
-import MeshGradientBackground from './components/MeshGradientBackground' // Import di sini
+import MeshGradientBackground from './components/MeshGradientBackground'
+import CustomCursor from './components/CustomCursor' // Import kursornya
 
 function App() {
   return (
-    // Bungkus dengan div relative biar z-index background-nya bekerja dengan bener
+    // Kasih cursor-none kalo lu mau kursor panah putih bawaan windows hilang.
+    // Tapi mending biarin aja dulu biar ada efek "Follower" nya.
     <div className="relative min-h-screen">
+      <CustomCursor /> {/* Taruh di sini */}
       <MeshGradientBackground />
       <IndexPages/>
     </div>
