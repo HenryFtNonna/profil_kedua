@@ -131,10 +131,22 @@ export default function AboutMe() {
 
             <div className="relative z-10 w-full h-full bg-[#111] border border-gray-800 rounded-3xl p-8 lg:p-10 flex flex-col justify-center gap-8 shadow-2xl backdrop-blur-xl">
               <div className="space-y-4">
-                <div className="inline-block border border-gray-700 bg-gray-900 px-4 py-1.5 rounded-full">
-                  <span className="text-xs font-mono text-gray-400 tracking-widest uppercase">01. About Me</span>
-                </div>
-                
+                {/* Title Animasi */}
+                <motion.div 
+                  initial={{ opacity: 0, x: -30, skewX: 10 }}
+                  whileInView={{ opacity: 1, x: 0, skewX: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                  className=" flex items-center gap-4"
+                >
+                  <div className="inline-block border border-gray-700 bg-gray-900 px-4 py-1.5 rounded-full overflow-hidden relative group">
+                    <div className="absolute inset-0 bg-blue-500/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                    <span className="relative text-xs font-mono text-gray-400 tracking-widest uppercase group-hover:text-white transition-colors">
+                      01. About Me
+                    </span>
+                  </div>
+                </motion.div>
+                          
                 <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white leading-[1.1]">
                   Mohan <br/> 
                   <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
@@ -168,7 +180,7 @@ export default function AboutMe() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-8"
         >
-          <h2 className="text-3xl font-bold uppercase tracking-tight text-white">What I'm Doing</h2>
+          <h2 className="text-3xl font-bold uppercase tracking-tight text-white">What I Do</h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mt-2 rounded-full"></div>
         </motion.div>
         
