@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import HeroSection from './hero/HeroSection';
 import AboutMe from './about/AboutMe';
 import SkillStack from './skillstack/SkillStack';
-import Experience from './experience/Experience'; // <--- Update path folder di sini
+import Experience from './experience/Experience';
+import Education from './education/Education'; // <--- Update path folder di sini
 
 import { motion, useScroll, useSpring } from 'motion/react';
 import Lenis from 'lenis';
@@ -60,6 +61,7 @@ export default function IndexPages() {
           {/* SkillStack gw masukin di container yang sama biar ga kejauhan gap-nya */}
           <SkillStack/>
           <Experience/>
+          <Education/>
         </div>
       </section>
       
