@@ -7,7 +7,7 @@ export default function Experience() {
     {
       company: "Matrix Data Corp",
       role: "Web Developer (Intern)",
-      period: "November 2025 – Mei 2026",
+      period: "Nov 2025 – Mei 2026",
       location: "Yogyakarta, Indonesia",
       desc: [
         "WordPress Developer: Melakukan optimasi performa website hingga mencapai skor optimal 90-100 di Google PageSpeed Insights, serta implementasi On-Page SEO dan Wordfence Security.",
@@ -18,7 +18,7 @@ export default function Experience() {
     {
       company: "Alterra Academy",
       role: "Front-End Engineer (Intern)",
-      period: "Februari 2024 - Juni 2024",
+      period: "Feb 2024 - Jun 2024",
       location: "Remote, Indonesia",
       desc: [
         "Mengembangkan Admin Dashboard interaktif untuk sistem E-Commerce bertema aquaculture farming.",

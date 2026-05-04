@@ -3,7 +3,8 @@ import HeroSection from './hero/HeroSection';
 import AboutMe from './about/AboutMe';
 import SkillStack from './skillstack/SkillStack';
 import Experience from './experience/Experience';
-import Education from './education/Education'; // <--- Update path folder di sini
+import Education from './education/Education';
+import Project from './project/Project'; // <--- Update path folder di sini
 
 import { motion, useScroll, useSpring } from 'motion/react';
 import Lenis from 'lenis';
@@ -62,6 +63,7 @@ export default function IndexPages() {
           <SkillStack/>
           <Experience/>
           <Education/>
+          <Project/>  
         </div>
       </section>
       

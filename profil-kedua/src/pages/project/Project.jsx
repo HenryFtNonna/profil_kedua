@@ -1,0 +1,229 @@
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useMotionValue, useMotionValueEvent, AnimatePresence } from 'motion/react';
+
+export default function Project() {
+  const projects = [
+    {
+      title: "Henri Monitoring (IoT)",
+      desc: "Sistem monitoring data tinggi badan IoT secara real-time. Menghubungkan sensor ke mikrokontroler ESP8266 dan Firebase API.",
+      tech: ["React", "Firebase", "ESP8266", "TailwindCSS"],
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop", 
+      github: "https://github.com/HenryFtNonna",
+      live: "https://henry-monitoring.vercel.app/"
+    },
+    {
+      title: "Tepi Langit Restaurant",
+      desc: "Aplikasi katalog menu restoran dinamis dengan tiga role utama. Dilengkapi dashboard admin untuk manajemen menu real-time.",
+      tech: ["Vue.js", "Supabase", "TailwindCSS"],
+      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop", 
+      github: "https://github.com/HenryFtNonna",
+      live: "https://tepi-langit.vercel.app/home"
+    },
+    {
+      title: "Alterra Admin Dashboard",
+      desc: "Sistem manajemen E-Commerce tema aquaculture. Mengelola produk, tambak, artikel, dan promo terintegrasi RESTful API.",
+      tech: ["ReactJS", "Flowbite", "Axios", "Git Flow"],
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop", 
+      github: "https://github.com/blueharvest-alterra",
+      live: "" 
+    },
+    {
+      title: "Matrix Data / Jurnal OJS",
+      desc: "Optimasi Web Profile dengan skor PageSpeed sempurna (90-100) dan setup Open Journal System (OJS) untuk publikasi akademik.",
+      tech: ["WordPress", "Elementor", "OJS", "cPanel"],
+      image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=800&auto=format&fit=crop", 
+      github: "", 
+      live: "https://matrix.or.id"
+    }
+  ];
+
+  const carouselRef = useRef();
+  const [width, setWidth] = useState(0);
+  
+  // State untuk deteksi posisi drag biar panah muncul/hilang
+  const x = useMotionValue(0);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if(carouselRef.current) {
+        const scrollWidth = carouselRef.current.scrollWidth;
+        const offsetWidth = carouselRef.current.offsetWidth;
+        setWidth(scrollWidth - offsetWidth);
+        
+        // Kalo konten lebih kecil dari layar, panah kanan ilangin aja
+        if (scrollWidth <= offsetWidth) {
+          setCanScrollRight(false);
+        }
+      }
+    }, 100);
+  }, []);
+
+  // Event listener ngebaca perubahan posisi x (drag)
+  useMotionValueEvent(x, "change", (latest) => {
+    setCanScrollLeft(latest < -5); // Kalo udah digeser ke kiri dikit, panah kiri muncul
+    setCanScrollRight(latest > -width + 5); // Kalo belom mentok kanan, panah kanan muncul
+  });
+
+  return (
+    <div className="w-full py-20 relative overflow-hidden">
+      
+      {/* Title Animasi & Drag Indicator (Versi Lama) */}
+      <motion.div 
+        initial={{ opacity: 0, x: -30, skewX: 10 }}
+        whileInView={{ opacity: 1, x: 0, skewX: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ type: "spring", stiffness: 200, damping: 15 }}
+        className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8 lg:mb-12"
+      >
+        <div className="inline-block border border-gray-700 bg-gray-900 px-4 py-1.5 rounded-full overflow-hidden relative group cursor-default">
+          <div className="absolute inset-0 bg-blue-500/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+          <span className="relative text-xs font-mono text-gray-400 tracking-widest uppercase group-hover:text-white transition-colors">
+            05. Projects
+          </span>
+        </div>
+        <span className="text-gray-500 text-sm font-mono animate-pulse">
+          &lt;-- Drag to explore --&gt;
+        </span>
+      </motion.div>
+
+      {/* Slider Wrapper (Ada Panah Dinamis) */}
+      <div className="relative">
+
+        {/* Dynamic Left Arrow (Hanya Visual, Pointer Events None) */}
+        <AnimatePresence>
+          {canScrollLeft && (
+            <motion.div
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -10 }}
+              className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-30 pointer-events-none w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#111]/80 backdrop-blur-md border border-gray-700 flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.8)] text-white"
+            >
+              <svg className="w-5 h-5 md:w-6 md:h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Dynamic Right Arrow (Hanya Visual, Pointer Events None) */}
+        <AnimatePresence>
+          {canScrollRight && (
+            <motion.div
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 10 }}
+              className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-30 pointer-events-none w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#111]/80 backdrop-blur-md border border-gray-700 flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.8)] text-white"
+            >
+              <svg className="w-5 h-5 md:w-6 md:h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Track Carousel */}
+        <motion.div 
+          ref={carouselRef} 
+          className="cursor-grab active:cursor-grabbing overflow-visible"
+        >
+          <motion.div 
+            drag="x" 
+            dragConstraints={{ right: 0, left: -width }} 
+            style={{ x }} // Binding nilai X ke useMotionValue buat dibaca sama panah
+            className="flex gap-6 lg:gap-8 py-4 items-start"
+          >
+            {projects.map((project, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, scale: 0.9, y: 50 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ type: "spring", stiffness: 200, damping: 20, delay: index * 0.1 }}
+              >
+                {/* Desain Card Lama + Animasi Stretch Deskripsi */}
+                <motion.div
+                  initial="rest"
+                  whileHover="hover"
+                  animate="rest"
+                  className="min-w-[320px] max-w-[320px] md:min-w-[400px] md:max-w-[400px] bg-[#111] border border-gray-800 rounded-2xl overflow-hidden flex flex-col group shadow-lg transition-colors hover:border-gray-600"
+                >
+                  {/* Thumbnail Image */}
+                  <div className="relative h-48 md:h-56 overflow-hidden shrink-0">
+                    <div className="absolute inset-0 bg-blue-500/20 group-hover:bg-transparent transition-colors z-10"></div>
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                    />
+                  </div>
+
+                  {/* Card Content Area */}
+                  <div className="p-6 flex flex-col flex-grow">
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+                      {project.title}
+                    </h3>
+                    
+                    {/* ACCORDION ANIMATION: Buka tutup deskripsi */}
+                    <motion.div
+                      variants={{
+                        rest: { height: 0, opacity: 0 },
+                        hover: { height: "auto", opacity: 1 }
+                      }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className="overflow-hidden"
+                    >
+                      <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                        {project.desc}
+                      </p>
+                    </motion.div>
+
+                    {/* Tech Stack Pills */}
+                    <div className="flex flex-wrap gap-2 mb-8">
+                      {project.tech.map((t, i) => (
+                        <span key={i} className="text-[11px] font-mono text-purple-400 bg-purple-500/10 border border-purple-500/20 px-2 py-1 rounded-md">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Buttons Layout (Versi Lama) */}
+                    <div className="flex items-center gap-3 mt-auto">
+                      {project.github ? (
+                        <a 
+                          href={project.github} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="flex-1 flex justify-center items-center gap-2 py-2.5 rounded-lg border border-gray-600 text-gray-300 hover:text-white hover:border-gray-400 hover:bg-gray-800 transition-all font-semibold text-sm"
+                        >
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                          </svg>
+                          View
+                        </a>
+                      ) : (
+                        <div className="flex-1 py-2.5 rounded-lg border border-gray-800 text-gray-600 text-center font-semibold text-sm cursor-not-allowed">
+                          Private Repo
+                        </div>
+                      )}
+
+                      {project.live && (
+                        <a 
+                          href={project.live} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="flex-1 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-center shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] transition-all font-semibold text-sm"
+                        >
+                          Live Demo
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                </motion.div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </div>
+
+    </div>
+  );
+}
