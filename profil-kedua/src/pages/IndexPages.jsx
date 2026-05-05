@@ -4,7 +4,9 @@ import AboutMe from './about/AboutMe';
 import SkillStack from './skillstack/SkillStack';
 import Experience from './experience/Experience';
 import Education from './education/Education';
-import Project from './project/Project'; // <--- Update path folder di sini
+import Project from './project/Project';
+import Certificates from './certificates/Certificates';
+import Contact from './contact/Contact'; // <--- Update path folder di sini
 
 import { motion, useScroll, useSpring } from 'motion/react';
 import Lenis from 'lenis';
@@ -64,7 +66,10 @@ export default function IndexPages() {
           <Experience/>
           <Education/>
           <Project/>  
+          <Certificates/>
+          <Contact/>
         </div>
+        
       </section>
       
     </main>
