@@ -184,9 +184,24 @@ export default function HeroSection() {
           <div className="relative z-10 w-64 h-64 sm:w-72 sm:h-72">
             <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 overflow-hidden flex items-center justify-center">
               <figure className="hover-gallery w-full h-full">
-                <img src={profile1} alt="Profile 1" className="w-full h-full object-cover" />
-                <img src={profile2} alt="Profile 2" className="w-full h-full object-cover" />
-                <img src={profile3} alt="Profile 3" className="w-full h-full object-cover" />
+                <img 
+                src={profile1} 
+                alt="Profile 1"
+                loading="lazy"         // <--- BIAR GAMBAR DILOAD KALO UDAH DEKET LAYAR AJA
+                decoding="async" 
+                className="w-full h-full object-cover" />
+                <img 
+                src={profile2} 
+                alt="Profile 2" 
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover" />
+                <img 
+                src={profile3} 
+                alt="Profile 3" 
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover" />
               </figure>
             </div>
             
