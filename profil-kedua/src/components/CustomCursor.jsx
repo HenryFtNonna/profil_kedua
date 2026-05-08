@@ -52,7 +52,8 @@ export default function CustomCursor() {
         x: smoothX,
         y: smoothY,
         // The magic x-ray/mask blend mode
-        mixBlendMode: "difference" 
+        mixBlendMode: "difference",
+        // willChange: "transform"
       }}
       animate={{
         // Large scale when over text/buttons (sama gede kayak di buttons sekarang)
