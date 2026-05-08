@@ -132,7 +132,7 @@ export default function Certificates() {
   ];
 
   return (
-    <div className="w-full py-20 relative">
+    <div className="w-full relative">
       
       {/* Title Animasi Dipatenin */}
       <motion.div 

@@ -4,14 +4,16 @@ import profile1 from '../../assets/profil1.jpg';
 import profile2 from '../../assets/profil2.png';
 import profile3 from '../../assets/profil3.png';
 
-// --- KOMPONEN BARU: MAGNETIC ICON ---
-// Ini buat ngatur efek ikon yang ngikutin kursor
+// --- IMPORT FONT AWESOME REACT WAY (BEST PRACTICE!) ---
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub, faLinkedinIn, faInstagram, faSpotify } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+
 const MagneticIcon = ({ children, href }) => {
   const ref = useRef(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  // useSpring bikin efek baliknya "membal" dan smooth
   const springX = useSpring(x, { stiffness: 150, damping: 15, mass: 0.1 });
   const springY = useSpring(y, { stiffness: 150, damping: 15, mass: 0.1 });
 
@@ -19,17 +21,14 @@ const MagneticIcon = ({ children, href }) => {
     const { clientX, clientY } = e;
     const { height, width, left, top } = ref.current.getBoundingClientRect();
     
-    // Ngitung jarak tengah elemen ke posisi kursor
     const middleX = clientX - (left + width / 2);
     const middleY = clientY - (top + height / 2);
     
-    // Angka 0.3 ini buat ngatur "kekuatan magnet". Makin gede makin ketarik.
     x.set(middleX * 0.3); 
     y.set(middleY * 0.3);
   };
 
   const handleMouseLeave = () => {
-    // Balik ke posisi 0 pas kursor pergi
     x.set(0);
     y.set(0);
   };
@@ -41,7 +40,6 @@ const MagneticIcon = ({ children, href }) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ x: springX, y: springY }}
-      // Catatan: Hapus transition-all diganti transition-colors biar ga berantem sama animasi gerakan framer
       className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-400 hover:bg-gray-800 transition-colors"
     >
       {children}
@@ -50,13 +48,11 @@ const MagneticIcon = ({ children, href }) => {
 };
 
 export default function HeroSection() {
-  // --- STATE UNTUK SPOTIFY PLAYER ---
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const audioRef = useRef(null);
 
-  // --- STATE UNTUK GLITCH TEXT ---
   const [textIndex, setTextIndex] = useState(0);
   const words = ["HENRY.", "WEB DEV."];
 
@@ -67,7 +63,6 @@ export default function HeroSection() {
     return () => clearInterval(interval);
   }, []);
 
-  // --- FUNGSI SPOTIFY ---
   const togglePlay = () => {
     const audio = audioRef.current;
     if (isPlaying) {
@@ -93,8 +88,16 @@ export default function HeroSection() {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
+  // --- UPDATE 1: Pake Object Variable langsung dari FontAwesomeIcon ---
+  const socialLinks = [
+    { icon: faGithub, url: '#github' },
+    { icon: faLinkedinIn, url: '#linkedin' },
+    { icon: faInstagram, url: '#instagram' },
+    { icon: faEnvelope, url: '#contact' }
+  ];
+
   return (
-    <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-stretch min-h-[75vh]">
+    <div className="w-full grid grid-cols-1 mt-11 lg:mt-0 lg:grid-cols-2 gap-16 lg:gap-8 items-stretch min-h-[75vh]">
       
       {/* === KIRI: TEKS & TOMBOL === */}
       <motion.div 
@@ -138,22 +141,21 @@ export default function HeroSection() {
           </p>
 
           <div className="flex gap-4 mt-8">
-            {/* --- UPDATE 1: PANGGIL KOMPONEN MAGNETIC ICON --- */}
-            {['Github', 'LinkedIn', 'Instagram', 'Email'].map((item, index) => (
-              <MagneticIcon key={index} href={`#${item.toLowerCase()}`}>
-                <span className="text-xs">{item[0]}</span>
+            {/* --- UPDATE 2: Lempar ke FontAwesomeIcon component --- */}
+            {socialLinks.map((item, index) => (
+              <MagneticIcon key={index} href={item.url}>
+                <FontAwesomeIcon icon={item.icon} className="text-lg" />
               </MagneticIcon>
             ))}
           </div>
         </div>
 
         <div className="mt-10 flex gap-4 justify-center lg:justify-start">
-          {/* --- UPDATE 2: EFEK TOMBOL HOVER & TAP --- */}
           <motion.a 
-            href="#portfolio" 
-            className="btn bg-white text-black hover:bg-gray-200 border-none rounded-xl px-8"
-            whileHover={{ scale: 1.05 }} // Tombol membesar dikit pas di-hover
-            whileTap={{ scale: 0.95 }}   // Tombol mengecil pas diklik
+            href="#projects" 
+            className="btn bg-white text-black hover:bg-gray-200 border-none rounded-xl px-8 py-3 font-semibold"
+            whileHover={{ scale: 1.05 }} 
+            whileTap={{ scale: 0.95 }}  
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
             View Projects
@@ -161,9 +163,8 @@ export default function HeroSection() {
           
           <motion.a 
             href="#contact" 
-            className="btn btn-outline border-gray-700 text-white hover:bg-gray-800 hover:text-white hover:border-gray-600 rounded-xl px-8"
-            // Sengaja ga kasih whileHover sesuai request lu
-            whileTap={{ scale: 0.95 }}  // Cuma mengecil pas diklik
+            className="btn btn-outline border border-gray-700 text-white hover:bg-gray-800 hover:text-white hover:border-gray-600 rounded-xl px-8 py-3 font-semibold"
+            whileTap={{ scale: 0.95 }} 
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
             Contact Me
@@ -178,7 +179,7 @@ export default function HeroSection() {
         transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         className="flex flex-col items-center lg:items-center justify-between h-full relative"
       >
-        <div className="flex-grow flex items-center justify-center relative w-full mt-10 lg:mt-0">
+        <div className="flex-grow flex items-center justify-center relative w-full lg:mt-0">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-purple-600/30 blur-[80px] rounded-full z-0"></div>
 
           <div className="relative z-10 w-64 h-64 sm:w-72 sm:h-72">
@@ -187,7 +188,7 @@ export default function HeroSection() {
                 <img 
                 src={profile1} 
                 alt="Profile 1"
-                loading="lazy"         // <--- BIAR GAMBAR DILOAD KALO UDAH DEKET LAYAR AJA
+                loading="lazy"         
                 decoding="async" 
                 className="w-full h-full object-cover" />
                 <img 
@@ -221,10 +222,12 @@ export default function HeroSection() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center relative overflow-hidden shrink-0">
-                <svg className="w-6 h-6 text-gray-400 absolute z-0" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-                </svg>
-                {isPlaying && <div className="absolute inset-0 bg-green-500/20 z-10"></div>}
+                {/* --- UPDATE 3: LOGO SPOTIFY PAKE FONT AWESOME COMPONENT --- */}
+                <FontAwesomeIcon 
+                  icon={faSpotify} 
+                  className={`text-3xl relative z-20 transition-colors duration-300 ${isPlaying ? 'text-[#1DB954]' : 'text-gray-400'}`} 
+                />
+                {isPlaying && <div className="absolute inset-0 bg-[#1DB954]/20 z-10 animate-pulse"></div>}
               </div>
               
               <div className="overflow-hidden">
@@ -237,7 +240,7 @@ export default function HeroSection() {
                     {[0, 1, 2].map((bar) => (
                       <motion.div
                         key={bar}
-                        className={`w-1 rounded-sm ${isPlaying ? 'bg-green-500' : 'bg-gray-600'}`}
+                        className={`w-1 rounded-sm ${isPlaying ? 'bg-[#1DB954]' : 'bg-gray-600'}`}
                         animate={
                           isPlaying 
                             ? { height: ["4px", "12px", "4px", "10px", "4px"] } 
@@ -277,7 +280,6 @@ export default function HeroSection() {
             <motion.button 
               onClick={togglePlay}
               className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center shadow-lg shrink-0"
-              // whileHover={{ scale: 1.15 }}
               whileTap={{ scale: 0.85 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >

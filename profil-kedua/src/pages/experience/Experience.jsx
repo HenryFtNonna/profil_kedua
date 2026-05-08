@@ -30,7 +30,7 @@ export default function Experience() {
   ];
 
   return (
-    <div className="w-full py-20 relative">
+    <div className="w-full relative">
       
       {/* Title Animasi (Udah dipatenin sesuai request lu) */}
       <motion.div 

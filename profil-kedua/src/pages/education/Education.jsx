@@ -28,7 +28,7 @@ export default function Education() {
   ];
 
   return (
-    <div className="w-full py-20">
+    <div className="w-full">
       
       {/* Title Animasi (Format dipatenin) */}
       <motion.div 

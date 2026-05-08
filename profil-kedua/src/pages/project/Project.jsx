@@ -64,7 +64,7 @@ export default function Project() {
   });
 
   return (
-    <div className="w-full py-20 relative overflow-hidden">
+    <div className="w-full relative overflow-hidden">
       
       {/* Title Animasi & Drag Indicator Biasa */}
       <motion.div 

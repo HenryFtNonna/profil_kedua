@@ -102,7 +102,7 @@ export default function AboutMe() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.8 }}
-      className="w-full pt-16 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start"
+      className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start"
     >
       
       {/* === KIRI: ABOUT ME (Efek Animated Stacked Card) === */}
@@ -180,7 +180,7 @@ export default function AboutMe() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-8"
         >
-          <h2 className="text-3xl font-bold uppercase tracking-tight text-white">What I Do</h2>
+          <h2 className="text-3xl font-bold uppercase tracking-tight text-white  mt-5">What I Do</h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mt-2 rounded-full"></div>
         </motion.div>
         
