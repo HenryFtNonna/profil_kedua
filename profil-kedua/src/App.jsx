@@ -9,7 +9,7 @@ function App() {
     // Tapi mending biarin aja dulu biar ada efek "Follower" nya.
     <div className="relative min-h-screen">
       <CustomCursor /> 
-      {/* <MeshGradientBackground /> */}
+      <MeshGradientBackground />
       <IndexPages/>
     </div>
   )
