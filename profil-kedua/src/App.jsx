@@ -8,7 +8,7 @@ function App() {
     // Kasih cursor-none kalo lu mau kursor panah putih bawaan windows hilang.
     // Tapi mending biarin aja dulu biar ada efek "Follower" nya.
     <div className="relative min-h-screen">
-      <CustomCursor /> {/* Taruh di sini */}
+      <CustomCursor /> 
       <MeshGradientBackground />
       <IndexPages/>
     </div>
