@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import HeroSection from './hero/HeroSection';
 import AboutMe from './about/AboutMe';
@@ -9,7 +9,8 @@ import Project from './project/Project';
 import Certificates from './certificates/Certificates';
 import Contact from './contact/Contact';
 import Navbar from '../components/navbar/Navbar';
-import ScrollToTop from '../components/ScrollToTop'; // <--- Import Navbar lu di sini
+import ScrollToTop from '../components/ScrollToTop';
+import Preloader from '../components/Preloader'; // <--- Import Navbar lu di sini
 
 import '../css/style.css'; 
 
@@ -17,7 +18,7 @@ import { motion, useScroll, useSpring } from 'motion/react';
 import Lenis from 'lenis';
 
 export default function IndexPages() {
-  
+  const [isLoaded, setIsLoaded] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -48,6 +49,8 @@ export default function IndexPages() {
 
   return (
     <main className="w-full bg-transparent text-white relative z-10">
+
+      <Preloader onComplete={() => setIsLoaded(true)} />
 
       {/* --- PANGGIL NAVBAR DI SINI --- */}
       <Navbar />

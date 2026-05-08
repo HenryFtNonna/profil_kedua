@@ -56,11 +56,16 @@ export default function HeroSection() {
   const [textIndex, setTextIndex] = useState(0);
   const words = ["HENRY.", "WEB DEV."];
 
+// Tunda animasi teks jalan selama 6 detik biar ga keburu ganti pas masih loading
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTextIndex((prev) => (prev + 1) % words.length);
-    }, 3000); 
-    return () => clearInterval(interval);
+    const delayTimeout = setTimeout(() => {
+      const interval = setInterval(() => {
+        setTextIndex((prev) => (prev + 1) % words.length);
+      }, 3000); 
+      return () => clearInterval(interval);
+    }, 6000); // <--- Nahan 6 detik
+
+    return () => clearTimeout(delayTimeout);
   }, []);
 
   const togglePlay = () => {
@@ -103,7 +108,8 @@ export default function HeroSection() {
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        // Kasih delay: 6.0 di sini
+        transition={{ duration: 0.8, delay: 6.0, ease: "easeOut" }}
         className="flex flex-col justify-between h-full"
       >
         <div className="flex-grow flex flex-col justify-center items-center text-center lg:items-start lg:text-left">
@@ -176,7 +182,8 @@ export default function HeroSection() {
       <motion.div 
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        // Kasih delay: 6.2 di sini (Biar munculnya nyusul dikit setelah teks)
+        transition={{ duration: 0.8, delay: 6.2, ease: "easeOut" }}
         className="flex flex-col items-center lg:items-center justify-between h-full relative"
       >
         <div className="flex-grow flex items-center justify-center relative w-full lg:mt-0">
