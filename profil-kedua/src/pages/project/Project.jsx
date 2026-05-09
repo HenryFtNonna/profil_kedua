@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useMotionValueEvent, AnimatePresence } from 'motion/react';
+import image3 from '../../assets/blueharvest.png'
+import Image4 from '../../assets/matrixlp.png'
 
 export default function Project() {
   const projects = [
@@ -8,30 +10,30 @@ export default function Project() {
       desc: "Sistem monitoring data tinggi badan IoT secara real-time. Menghubungkan sensor ke mikrokontroler ESP8266 dan Firebase API.",
       tech: ["React", "Firebase", "ESP8266", "TailwindCSS"],
       image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop", 
-      github: "https://github.com/HenryFtNonna",
+      github: "https://github.com/HenryFtNonna/reactjs-tinggibadan",
       live: "https://henry-monitoring.vercel.app/"
     },
     {
-      title: "Tepi Langit Restaurant",
+      title: "Tepi Langit Restaurant 🍷",
       desc: "Aplikasi katalog menu restoran dinamis dengan tiga role utama. Dilengkapi dashboard admin untuk manajemen menu real-time.",
       tech: ["Vue.js", "Supabase", "TailwindCSS"],
       image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop", 
-      github: "https://github.com/HenryFtNonna",
+      github: "https://github.com/HenryFtNonna/restaurant-menu",
       live: "https://tepi-langit.vercel.app/home"
     },
     {
-      title: "Alterra Admin Dashboard",
+      title: "BlueHarvest 🐟",
       desc: "Sistem manajemen E-Commerce tema aquaculture. Mengelola produk, tambak, artikel, dan promo terintegrasi RESTful API.",
       tech: ["ReactJS", "Flowbite", "Axios", "Git Flow"],
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop", 
+      image: image3, 
       github: "https://github.com/blueharvest-alterra",
-      live: "" 
+      live: "https://blueharvest.vercel.app/" 
     },
     {
-      title: "Matrix Data / Jurnal OJS",
+      title: "Matrix Data Corp",
       desc: "Optimasi Web Profile dengan skor PageSpeed sempurna (90-100) dan setup Open Journal System (OJS) untuk publikasi akademik.",
       tech: ["WordPress", "Elementor", "OJS", "cPanel"],
-      image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=800&auto=format&fit=crop", 
+      image: Image4, 
       github: "", 
       live: "https://matrix.or.id"
     }
@@ -158,11 +160,11 @@ export default function Project() {
                   initial="rest"
                   whileHover="hover"
                   animate="rest"
-                  className="min-w-[320px] max-w-[320px] md:min-w-[400px] md:max-w-[400px] bg-[#111] border border-gray-800 rounded-2xl overflow-hidden flex flex-col group shadow-lg transition-colors hover:border-gray-600"
+                  className="px-2 py-2 min-w-[320px] max-w-[320px] md:min-w-[400px] md:max-w-[400px] bg-[#111] border border-gray-800 rounded-2xl overflow-hidden flex flex-col group shadow-lg transition-colors hover:border-gray-600"
                 >
                   {/* Thumbnail Image */}
-                  <div className="relative h-48 md:h-56 overflow-hidden shrink-0">
-                    <div className="absolute inset-0 bg-blue-500/20 group-hover:bg-transparent transition-colors z-10"></div>
+                  <div className="relative h-48 md:h-56 overflow-hidden shrink-0 rounded-xl">
+                    <div className="absolute inset-0 bg-blue-500/20 group-hover:bg-transparent transition-colors z-10 "></div>
                     <img 
                       src={project.image} 
                       alt={project.title} 
@@ -201,7 +203,7 @@ export default function Project() {
 
                     {/* Buttons Layout */}
                     <div className="flex items-center gap-3 mt-auto pt-2 border-t border-gray-800/50">
-                      {project.github ? (
+                      {project.github && (
                         <a 
                           href={project.github} 
                           target="_blank" 
@@ -213,11 +215,12 @@ export default function Project() {
                           </svg>
                           Code
                         </a>
-                      ) : (
+                      )}
+                      {/* : (
                         <div className="flex-1 py-2.5 rounded-lg border border-gray-800 text-gray-600 text-center font-semibold text-sm cursor-not-allowed">
                           Private Repo
                         </div>
-                      )}
+                      ) */}
 
                       {project.live && (
                         <a 

@@ -112,7 +112,7 @@ const scrollToSection = (id) => {
               layout
               onClick={() => scrollToSection(item.id)}
               // Padding tombol px-4 py-2.5 dikecilin jadi px-3 py-1.5
-              className={`relative flex items-center justify-center px-3 py-1.5 rounded-full transition-colors duration-300 ${
+              className={`cursor-pointer relative flex items-center justify-center px-3 py-1.5 rounded-full transition-colors duration-300 ${
                 activeSection === item.id 
                   ? 'text-blue-400' 
                   : 'text-gray-400 hover:text-white hover:bg-white/5'
@@ -180,7 +180,7 @@ const scrollToSection = (id) => {
         <button 
           onClick={() => setIsOpen(!isOpen)}
           // Tombol hamburger w-11 h-11 dikecilin jadi w-10 h-10
-          className={`w-10 h-10 rounded-full flex flex-col items-center justify-center gap-1 transition-colors shrink-0 ${
+          className={`cursor-pointer w-10 h-10 rounded-full flex flex-col items-center justify-center gap-1 transition-colors shrink-0 ${
             isOpen ? 'bg-blue-500/20 text-blue-400' : 'bg-transparent text-white hover:bg-white/10'
           }`}
         >
@@ -207,7 +207,7 @@ const scrollToSection = (id) => {
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 // px-4 py-4 didietin jadi px-3 py-3, rounded-xl jadi rounded-lg biar rapi
-                className={`flex items-center justify-between px-3 py-3 rounded-lg transition-colors duration-300 relative overflow-hidden group ${
+                className={`cursor-pointer flex items-center justify-between px-3 py-3 rounded-lg transition-colors duration-300 relative overflow-hidden group ${
                   activeSection === item.id ? 'text-blue-400' : 'text-gray-300 hover:bg-white/5'
                 }`}
               >

@@ -11,8 +11,8 @@ export default function Preloader({ onComplete }) {
   ];
 
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    document.documentElement.classList.add('no-scroll');
+    // Kunci scrollbar di tag <html> biar ga ilang-timbul
+    document.documentElement.style.overflow = 'hidden';
 
     const helloInterval = setInterval(() => {
       setHelloIndex((prev) => (prev + 1) % hellos.length);
@@ -27,9 +27,7 @@ export default function Preloader({ onComplete }) {
     }, 4800);
     const t5 = setTimeout(() => {
         setIsVisible(false); 
-        // FIX SCROLLBAR BUG: Pake string kosong '' biar balik ke default CSS, jangan pake 'auto'
-        document.body.style.overflow = ''; 
-        document.documentElement.classList.remove('no-scroll');
+        document.documentElement.style.overflow = ''; 
     }, 5800);
     
     const t6 = setTimeout(() => {
@@ -39,8 +37,7 @@ export default function Preloader({ onComplete }) {
     return () => {
       clearInterval(helloInterval);
       clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); clearTimeout(t5); clearTimeout(t6);
-      document.body.style.overflow = '';
-      document.documentElement.classList.remove('no-scroll');
+      document.documentElement.style.overflow = '';
     };
   }, [onComplete]);
 
@@ -51,12 +48,10 @@ export default function Preloader({ onComplete }) {
           initial={{ y: 0 }}
           exit={{ y: "-100vh" }}
           transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }} 
-          // FIX POSISI: justify-center items-center biar di tengah layar
           className="fixed inset-0 z-[999999] bg-[#050505] flex flex-col justify-center items-center p-6 font-mono text-sm md:text-lg text-gray-400 overflow-hidden"
         >
           <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)`, backgroundSize: '40px 40px' }}></div>
 
-          {/* FIX TEKS: max-w-sm biar teksnya rapi ngumpul di tengah tapi tetep rata kiri */}
           <div className="relative z-10 flex flex-col gap-2 w-full max-w-sm md:max-w-md">
             
             <div className="flex items-center gap-4">
@@ -78,15 +73,34 @@ export default function Preloader({ onComplete }) {
               </motion.div>
             )}
 
+            {/* FIX: Bungkus pake step >= 3 biar ga nongol duluan */}
             {step >= 3 && (
               <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="flex items-center">
                 <span className="text-green-500 mr-3">{">"}</span> 
+                
                 {step === 3 ? (
                   <span className="text-yellow-500">Best experienced on desktop.</span>
                 ) : (
-                  <span className="text-green-400 font-bold tracking-widest uppercase animate-pulse">Welcome.</span>
+                  <span className="text-green-400 font-bold tracking-widest uppercase flex items-center">
+                    <span className="animate-pulse">Welcome</span>
+                    
+                    {/* TANGAN DADAH-DADAH */}
+                    <motion.span
+                      className="ml-2 inline-block"
+                      style={{ transformOrigin: "70% 70%" }}
+                      animate={{ rotate: [0, 14, -8, 14, -4, 10, 0, 0] }} 
+                      transition={{ 
+                        duration: 1, 
+                        repeat: Infinity, 
+                        ease: "easeInOut" 
+                      }}
+                    >
+                      👋
+                    </motion.span>
+                  </span>
                 )}
                 
+                {/* Blinking Cursor */}
                 <motion.div 
                   animate={{ opacity: [1, 0, 1] }}
                   transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
