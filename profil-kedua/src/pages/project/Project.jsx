@@ -1,41 +1,71 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useMotionValueEvent, AnimatePresence } from 'motion/react';
+import image1 from '../../assets/henrimonitoring.png'
+import image2 from '../../assets/tepilangit.png'
 import image3 from '../../assets/blueharvest.png'
 import Image4 from '../../assets/matrixlp.png'
+import Image5 from '../../assets/duittt.png'
+import Image6 from '../../assets/matrixojs.png'
+import Image7 from '../../assets/henricrosshair.png'
+
 
 export default function Project() {
   const projects = [
     {
-      title: "Henri Monitoring (IoT)",
+      title: "BlueHarvest 🎏",
+      desc: "Sistem manajemen E-Commerce tema aquaculture. Mengelola produk, tambak, artikel, dan promo terintegrasi RESTful API.",
+      tech: ["ReactJS", "TailwindCSS", "Axios", "Git Flow"],
+      image: image3, 
+      github: "https://github.com/blueharvest-alterra",
+      live: "https://blueharvest.vercel.app/" 
+    },
+    {
+      title: "Matrix Data Corp 📊",
+      desc: "Optimasi Web Profile dengan skor PageSpeed sempurna (90-100) dan setup Open Journal System (OJS) untuk publikasi akademik.",
+      tech: ["WordPress", "Elementor", "SEO", "LiteSpeed"],
+      image: Image4, 
+      github: "", 
+      live: "https://matrix.or.id"
+    },
+    {
+      title: "Matrix Journal 📚",
+      desc: "Optimasi Web Profile dengan skor PageSpeed sempurna (90-100) dan setup Open Journal System (OJS) untuk publikasi akademik.",
+      tech: ["Open Journal System", "SMTP", "HTML", "cPanel"],
+      image: Image6, 
+      github: "", 
+      live: "https://jurnal.matrix.or.id/"
+    },
+    {
+      title: "DUITTT 💰",
+      desc: "Sistem manajemen E-Commerce tema aquaculture. Mengelola produk, tambak, artikel, dan promo terintegrasi RESTful API.",
+      tech: ["ReactJS", "TailwindCSS", "DaisyUI", "Rest API"],
+      image: Image5, 
+      github: "https://github.com/HenryFtNonna/React_Mohan-Henry-Kusuma/tree/main/mini-project",
+      live: "https://react-mohan-henry-kusuma-3oad.vercel.app/" 
+    },
+    {
+      title: "Henri Monitoring (IoT) 💻",
       desc: "Sistem monitoring data tinggi badan IoT secara real-time. Menghubungkan sensor ke mikrokontroler ESP8266 dan Firebase API.",
-      tech: ["React", "Firebase", "ESP8266", "TailwindCSS"],
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop", 
+      tech: ["ReactJS", "TailwindCSS", "Firebase", "ESP8266"],
+      image: image1, 
       github: "https://github.com/HenryFtNonna/reactjs-tinggibadan",
       live: "https://henry-monitoring.vercel.app/"
     },
     {
       title: "Tepi Langit Restaurant 🍷",
       desc: "Aplikasi katalog menu restoran dinamis dengan tiga role utama. Dilengkapi dashboard admin untuk manajemen menu real-time.",
-      tech: ["Vue.js", "Supabase", "TailwindCSS"],
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop", 
+      tech: ["Vue.js", "TailwindCSS", "DaisyUI", "Supabase"],
+      image: image2, 
       github: "https://github.com/HenryFtNonna/restaurant-menu",
-      live: "https://tepi-langit.vercel.app/home"
+      live: "https://tepi-langit.vercel.app/"
     },
     {
-      title: "BlueHarvest 🐟",
-      desc: "Sistem manajemen E-Commerce tema aquaculture. Mengelola produk, tambak, artikel, dan promo terintegrasi RESTful API.",
-      tech: ["ReactJS", "Flowbite", "Axios", "Git Flow"],
-      image: image3, 
-      github: "https://github.com/blueharvest-alterra",
-      live: "https://blueharvest.vercel.app/" 
-    },
-    {
-      title: "Matrix Data Corp",
-      desc: "Optimasi Web Profile dengan skor PageSpeed sempurna (90-100) dan setup Open Journal System (OJS) untuk publikasi akademik.",
-      tech: ["WordPress", "Elementor", "OJS", "cPanel"],
-      image: Image4, 
-      github: "", 
-      live: "https://matrix.or.id"
+      title: "Henri Crosshair 🎯",
+      desc: "Sistem monitoring data tinggi badan IoT secara real-time. Menghubungkan sensor ke mikrokontroler ESP8266 dan Firebase API.",
+      tech: ["ReactJS", "TailwindCSS", "Supabase", "Auth"],
+      image: Image7, 
+      github: "https://github.com/HenryFtNonna/henri-crosshair",
+      live: "https://henri-crosshair.vercel.app/"
     }
   ];
 
