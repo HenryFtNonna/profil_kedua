@@ -115,7 +115,7 @@ const scrollToSection = (id) => {
               className={`cursor-pointer relative flex items-center justify-center px-3 py-1.5 rounded-full transition-colors duration-300 ${
                 activeSection === item.id 
                   ? 'text-blue-400' 
-                  : 'text-gray-400 hover:text-white hover:bg-white/5'
+                  : 'text-gray-400 hover:text-white hover:bg-blue-900'
               }`}
             >
               {activeSection === item.id && (
