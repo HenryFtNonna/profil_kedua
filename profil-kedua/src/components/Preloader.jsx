@@ -12,7 +12,7 @@ export default function Preloader({ onComplete }) {
 
   useEffect(() => {
     // Kunci scrollbar di tag <html> biar ga ilang-timbul
-    document.documentElement.style.overflow = 'hidden';
+    // document.documentElement.style.overflow = 'hidden';
 
     const helloInterval = setInterval(() => {
       setHelloIndex((prev) => (prev + 1) % hellos.length);
@@ -26,12 +26,13 @@ export default function Preloader({ onComplete }) {
         clearInterval(helloInterval); 
     }, 4800);
     const t5 = setTimeout(() => {
-        setIsVisible(false); 
-        document.documentElement.style.overflow = ''; 
+        setIsVisible(false);
+        document.documentElement.style.overflow = ''; // ✅ reset dulu
     }, 5800);
-    
+
     const t6 = setTimeout(() => {
-        if(onComplete) onComplete();
+        document.documentElement.style.overflow = ''; // ✅ double-reset buat safety
+        if (onComplete) onComplete();
     }, 6600);
 
     return () => {

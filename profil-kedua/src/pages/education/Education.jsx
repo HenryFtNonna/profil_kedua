@@ -12,7 +12,7 @@ export default function Education() {
         "Web Development: Mengembangkan aplikasi web dinamis berfokus pada efisiensi sistem, dengan proyek akhir berupa sistem manajemen rental konsol game.",
         "Internet of Things (IoT): Merancang arsitektur perangkat keras dan lunak untuk smart system, dengan pencapaian akhir berupa sistem monitoring data tinggi badan real-time menggunakan ESP8266 dan Firebase."
       ],
-      tech: ["Cisco Routing", "IoT Architecture", "PHP & SQL", "ESP8266"]
+      tech: ["Cisco Networking", "IoT Architecture", "PHP & SQL", ]
     },
     {
       school: "SMKN 02 Karanganyar",
@@ -20,7 +20,7 @@ export default function Education() {
       period: "Juli 2018 – Juni 2021",
       points: [
         "Software Engineering: Mempelajari fundamental pemrograman web dan basis data relasional, menghasilkan proyek akhir sistem kasir terintegrasi (CRUD).",
-        "Object-Oriented Programming: Menguasai dasar logika pemrograman PBO menggunakan bahasa Java (NetBeans).",
+        "Object-Oriented Programming: Membangun fondasi logika pemrograman terstruktur dan problem-solving berbasis objek menggunakan Java.",
         "Hardware Maintenance: Memahami arsitektur perangkat keras melalui praktik perakitan, instalasi OS, dan pemeliharaan komputer."
       ],
       tech: ["PHP", "Bootstrap", "MySQL", "Java", "Hardware Maintenance"]

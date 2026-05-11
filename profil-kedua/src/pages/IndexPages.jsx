@@ -47,6 +47,17 @@ export default function IndexPages() {
     }
   }, []);
 
+    useEffect(() => {
+    if (!isLoaded) {
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.documentElement.style.overflow = '';
+    }
+    return () => {
+      document.documentElement.style.overflow = '';
+    };
+  }, [isLoaded]);
+
   return (
     <main className="w-full bg-transparent text-white relative z-10">
 

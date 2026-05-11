@@ -65,25 +65,25 @@ export default function AboutMe() {
   const skills = [
     {
       title: "Front-End Development",
-      desc: "Mengembangkan antarmuka interaktif dan responsif menggunakan ReactJS, Vue.js, dan TailwindCSS. Berpengalaman kolaborasi lintas divisi (UI/UX, Backend, QA) dalam lingkungan kerja Agile.",
+      desc: "Membangun antarmuka web yang modern, responsif, dan interaktif. Terbiasa menerjemahkan desain menjadi clean code bersama tim lintas divisi menggunakan ReactJS, Vue.js, dan TailwindCSS.",
       color: "from-blue-500 to-indigo-600",
       colSpan: "col-span-2 md:col-span-2", 
     },
     {
       title: "WordPress / CMS",
-      desc: "Optimasi landing page dengan Elementor Pro, LiteSpeed Cache, dan Wordfence. Berhasil menembus skor PageSpeed optimal.",
+      desc: "Mengembangkan landing page bertenaga WordPress yang tidak hanya estetik, tapi juga teroptimasi. Fokus pada kecepatan tinggi (PageSpeed optimal) dan perlindungan keamanan berlapis.",
       color: "from-purple-500 to-pink-500",
       colSpan: "col-span-2 md:col-span-1", 
     },
     {
       title: "Open Journal System",
-      desc: "Instalasi, konfigurasi server cPanel, dan penyesuaian UI/UX untuk berbagai publikasi jurnal akademik.",
+      desc: "Menyediakan setup end-to-end untuk platform publikasi jurnal akademik. Mencakup proses instalasi, manajemen server (cPanel), kustomisasi antarmuka, hingga integrasi sistem.",
       color: "from-emerald-400 to-cyan-500",
       colSpan: "col-span-2 md:col-span-1", 
     },
     {
       title: "IoT & Hardware",
-      desc: "Integrasi sensor dengan ESP8266 dan Firebase Realtime Database untuk sistem monitoring data secara real-time.",
+      desc: "Menghubungkan perangkat keras dengan aplikasi web. Merancang arsitektur sistem monitoring real-time yang mengintegrasikan mikrokontroler langsung ke cloud database.",
       color: "from-amber-400 to-orange-500",
       colSpan: "col-span-2 md:col-span-2", 
     }
@@ -144,7 +144,7 @@ export default function AboutMe() {
                 <h2 className="text-4xl md:text-5xl font-display font-black uppercase tracking-tighter text-white leading-[1.1]">
                   Mohan <br/> 
                   <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-                    Henry.
+                    Henry Kusuma.
                   </span>
                 </h2>
               </div>
@@ -152,13 +152,13 @@ export default function AboutMe() {
               {/* Teks panjang otomatis pake Plus Jakarta Sans. Dikasih leading-relaxed biar gampang dibaca */}
               <div className="space-y-5 text-gray-400 text-base leading-relaxed">
                 <p>
-                  Saya memiliki latar belakang pendidikan S1 Teknik Komputer dari Universitas Amikom Yogyakarta.
+                  Halo! Saya Henry, Web Developer yang berdomisili di Yogyakarta. Latar belakang Teknik Komputer membuat saya melihat pengembangan web lebih dari sekadar antarmuka visual.
                 </p>
                 <p>
-                  Fokus utama saya berada di Front-End Web Development, yang saya pertajam melalui program MSIB di Alterra Academy. Saya terbiasa bekerja secara kolaboratif lintas divisi untuk memastikan setiap produk digital berjalan optimal.
+                  Saya menikmati proses membangun sistem dari nol—mulai dari merancang arsitektur aplikasi, mengelola ekosistem WordPress & OJS, hingga eksperimen integrasi IoT dengan cloud database.
                 </p>
                 <p>
-                  Dengan motivasi tinggi dan kedisiplinan, saya selalu siap belajar dan beradaptasi dalam dunia teknologi yang bergerak cepat.
+                  Saat ini, saya fokus pada teknologi web modern (React, Vue, Tailwind). Saya selalu excited berkolaborasi menciptakan solusi digital yang tidak hanya estetik, tapi juga benar-benar bekerja.
                 </p>
               </div>
             </div>
@@ -176,7 +176,7 @@ export default function AboutMe() {
           className="mb-8"
         >
           {/* UPDATE FONT: Judul section pake Space Grotesk */}
-          <h2 className="text-3xl font-display font-bold uppercase tracking-tight text-white mt-5">What I Do</h2>
+          <h2 className="text-3xl font-display font-bold uppercase tracking-tight text-white mt-8">What I Do</h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mt-2 rounded-full"></div>
         </motion.div>
         

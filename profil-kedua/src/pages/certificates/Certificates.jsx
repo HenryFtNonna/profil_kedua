@@ -82,7 +82,7 @@ const CertificateCard = ({ cert, index }) => {
             {cert.title}
           </h3>
           <div className="flex items-center gap-2 mb-4">
-            <span className="text-gray-400 font-mono text-sm">{cert.issuer}</span>
+            <span className="text-gray-400 font-mono text-[12px]">{cert.issuer}</span>
             <span className="w-1 h-1 rounded-full bg-gray-700"></span>
             <span className="text-gray-500 font-mono text-sm">{cert.year}</span>
           </div>
@@ -109,13 +109,6 @@ export default function Certificates() {
   // Data mock sementara pake apa yang ada di CV lu
   const certificates = [
     {
-      title: "CCNA v7: Introduction to Networks",
-      issuer: "Cisco Networking Academy",
-      year: "2023",
-      desc: "Sertifikasi keahlian dalam merancang, mengkonfigurasi, dan memelihara arsitektur jaringan komputer dan routing dasar.",
-      pdfLink: "#" // Nanti diganti link PDF
-    },
-    {
       title: "Studi Independen Front-End Engineering",
       issuer: "Alterra Academy",
       year: "2024",
@@ -123,10 +116,32 @@ export default function Certificates() {
       pdfLink: "#"
     },
     {
-      title: "Sertifikasi Keahlian Web Development",
-      issuer: "LSP / Institusi (Contoh)",
+      title: "CCNA v7: Introduction to Networks",
+      issuer: "Cisco Networking Academy",
+      year: "2023",
+      desc: "Sertifikasi keahlian dalam merancang, mengkonfigurasi, dan memelihara arsitektur jaringan komputer dan routing dasar.",
+      pdfLink: "#" // Nanti diganti link PDF
+    },
+    {
+      title: "CCNA v7: Switching, Routing, and Wireless Essentials",
+      issuer: "Cisco Networking Academy",
+      year: "2023",
+      desc: "Sertifikasi keahlian dalam operasional switch, optimasi inter-VLAN routing, dan manajemen dasar teknologi wireless serta protokol keamanan jaringan.",
+      pdfLink: "#" // Nanti diganti link PDF
+    },
+    
+    {
+      title: "Piagam Penghargaan Anggota KPPS",
+      issuer: "Komisi Pemilihan Umum (KPU)",
       year: "2024",
-      desc: "Menguasai fundamental pemrograman dan pengembangan web dinamis menggunakan PHP, SQL, dan framework modern.",
+      desc: "Penghargaan atas dedikasi dalam menjalankan tugas sebagai penyelenggara pemungutan dan penghitungan suara pada Pemilihan Umum.",
+      pdfLink: "#"
+    },
+    {
+      title: "Volunteer Certificate - Amikom Fest 2023",
+      issuer: "Universitas Amikom Yogyakarta",
+      year: "2023",
+      desc: "Sertifikasi atas peran aktif sebagai tenaga medis lapangan dalam melakukan pemantauan kondisi kesehatan peserta pada Amikom Fest 2023.",
       pdfLink: "#"
     }
   ];

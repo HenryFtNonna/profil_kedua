@@ -21,7 +21,7 @@ export default function Project() {
     },
     {
       title: "Matrix Data Corp 📊",
-      desc: "Optimasi Web Profile dengan skor PageSpeed sempurna (90-100) dan setup Open Journal System (OJS) untuk publikasi akademik.",
+      desc: "Membangun landing page Matrix Data Corp yang cepat, aman, dan teroptimasi SEO untuk visibilitas bisnis yang maksimal.",
       tech: ["WordPress", "Elementor", "SEO", "LiteSpeed"],
       image: Image4, 
       github: "", 
@@ -29,7 +29,7 @@ export default function Project() {
     },
     {
       title: "Matrix Journal 📚",
-      desc: "Optimasi Web Profile dengan skor PageSpeed sempurna (90-100) dan setup Open Journal System (OJS) untuk publikasi akademik.",
+      desc: "Develop end-to-end Open Journal System (OJS). Memastikan platform publikasi yang fungsional, aman, dan siap digunakan",
       tech: ["Open Journal System", "SMTP", "HTML", "cPanel"],
       image: Image6, 
       github: "", 
@@ -37,7 +37,7 @@ export default function Project() {
     },
     {
       title: "DUITTT 💰",
-      desc: "Sistem manajemen E-Commerce tema aquaculture. Mengelola produk, tambak, artikel, dan promo terintegrasi RESTful API.",
+      desc: "Aplikasi manajemen keuangan. Dilengkapi pelacakan transaksi, rekap bulanan, dan asisten chatbot pintar.",
       tech: ["ReactJS", "TailwindCSS", "DaisyUI", "Rest API"],
       image: Image5, 
       github: "https://github.com/HenryFtNonna/React_Mohan-Henry-Kusuma/tree/main/mini-project",
@@ -53,7 +53,7 @@ export default function Project() {
     },
     {
       title: "Tepi Langit Restaurant 🍷",
-      desc: "Aplikasi katalog menu restoran dinamis dengan tiga role utama. Dilengkapi dashboard admin untuk manajemen menu real-time.",
+      desc: "Aplikasi katalog menu restoran dengan tampilan clean dan dinamis. Dilengkapi dashboard admin untuk manajemen menu real-time.",
       tech: ["Vue.js", "TailwindCSS", "DaisyUI", "Supabase"],
       image: image2, 
       github: "https://github.com/HenryFtNonna/restaurant-menu",
@@ -61,7 +61,7 @@ export default function Project() {
     },
     {
       title: "Henri Crosshair 🎯",
-      desc: "Sistem monitoring data tinggi badan IoT secara real-time. Menghubungkan sensor ke mikrokontroler ESP8266 dan Firebase API.",
+      desc: "Platform galeri crosshair Valorant. Memudahkan user menyalin kode dan dilengkapi dashboard admin untuk manajemen data.",
       tech: ["ReactJS", "TailwindCSS", "Supabase", "Auth"],
       image: Image7, 
       github: "https://github.com/HenryFtNonna/henri-crosshair",
