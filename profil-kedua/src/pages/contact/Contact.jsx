@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 
 export default function Contact() {
   const [isCopied, setIsCopied] = useState(false);
-  const email = "hello@mohanhenry.com"; 
+  const email = "mohan.henryk@gmail.com"; 
 
   const handleCopy = () => {
     navigator.clipboard.writeText(email);
@@ -72,7 +72,7 @@ export default function Contact() {
       </div>
 
       <motion.a 
-        href="https://wa.me/6281234567890" 
+        href="https://wa.me/6289665784433" 
         target="_blank"
         rel="noopener noreferrer"
         whileHover={{ scale: 1.05 }}
@@ -87,9 +87,9 @@ export default function Contact() {
 
       {/* Social Links dibikin flex-wrap biar kalo di HP ga nabrak */}
       <div className="mt-12 md:mt-16 flex flex-wrap justify-center items-center gap-6 md:gap-8 text-[10px] md:text-xs font-mono text-gray-500 uppercase tracking-widest px-4">
-        <a href="#" className="hover:text-blue-400 transition-colors">LinkedIn</a>
-        <a href="#" className="hover:text-purple-400 transition-colors">GitHub</a>
-        <a href="#" className="hover:text-pink-400 transition-colors">Instagram</a>
+        <a href="https://www.linkedin.com/in/mohan-henry-kusuma/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">LinkedIn</a>
+        <a href="https://github.com/HenryFtNonna" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400 transition-colors">GitHub</a>
+        <a href="https://www.instagram.com/mohan.henryk/" target="_blank" rel="noopener noreferrer" className="hover:text-pink-400 transition-colors">Instagram</a>
       </div>
 
       <div className="mt-8 text-[10px] font-mono text-gray-700 text-center px-4">

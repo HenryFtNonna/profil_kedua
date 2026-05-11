@@ -10,8 +10,8 @@ export default function Experience() {
       period: "Nov 2025 – Mei 2026",
       location: "Yogyakarta, Indonesia",
       desc: [
-        "WordPress Developer: Melakukan optimasi performa website hingga mencapai skor optimal 90-100 di Google PageSpeed Insights, serta implementasi On-Page SEO dan Wordfence Security.",
-        "OJS Developer: Instalasi, konfigurasi server cPanel, dan kustomisasi UI/UX ekosistem Open Journal System (OJS) untuk berbagai publikasi akademik."
+        "WordPress Developer: Mengembangkan landing page dan mengoptimasi performa website hingga menembus skor 90-100 di Google PageSpeed Insights. Dilengkapi optimasi SEO dan keamanan  berlapis.",
+        "OJS Developer: Menangani instalasi end-to-end, konfigurasi server (cPanel), hingga penyesuaian UI/UX ekosistem Open Journal System (OJS) untuk berbagai publikasi akademik hingga siap production."
       ],
       techStack: ["WordPress", "Elementor", "OJS", "cPanel", "LiteSpeed"]
     },
@@ -21,16 +21,15 @@ export default function Experience() {
       period: "Feb 2024 - Jun 2024",
       location: "Remote, Indonesia",
       desc: [
-        "Mengembangkan Admin Dashboard interaktif untuk sistem E-Commerce bertema aquaculture farming.",
-        "Berkolaborasi secara intensif lintas divisi (UI/UX, Backend, QA) menggunakan alur kerja Git Flow.",
-        "Integrasi RESTful API untuk sinkronisasi data secara real-time."
+        "Dashboard Development: Membangun antarmuka Admin Dashboard yang user-friendly untuk platform e-commerce aquaculture, memfasilitasi manajemen produk hingga monitoring data secara efisien.",
+        "Integration & Collaboration: Mengintegrasikan RESTful API untuk sinkronisasi data real-time. Terbiasa berkolaborasi lintas divisi (UI/UX, Backend, QA) dengan menerapkan alur kerja Git Flow.",
       ],
       techStack: ["ReactJS", "TailwindCSS", "Axios", "Git Flow", "Vite"]
     }
   ];
 
   return (
-    <div className="w-full py-20 relative">
+    <div className="w-full relative">
       
       {/* Title Animasi (Udah dipatenin sesuai request lu) */}
       <motion.div 

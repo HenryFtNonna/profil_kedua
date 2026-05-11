@@ -148,7 +148,7 @@ export default function SkillStack() {
   };
 
   return (
-    <div className="w-full py-20">
+    <div className="w-full">
       
       {/* Title Animasi */}
       <motion.div 
