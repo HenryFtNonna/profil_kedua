@@ -69,6 +69,9 @@ export default function Project() {
     }
   ];
 
+  // 1. TAMBAHIN STATE BUAT NGELACAK KARTU YANG AKTIF (MEKAR)
+  const [activeProject, setActiveProject] = useState(null);
+
   const carouselRef = useRef();
   const [width, setWidth] = useState(0);
   
@@ -98,7 +101,6 @@ export default function Project() {
   return (
     <div className="w-full relative overflow-hidden">
       
-      {/* Title Animasi & Drag Indicator Biasa */}
       <motion.div 
         initial={{ opacity: 0, x: -30, skewX: 10 }}
         whileInView={{ opacity: 1, x: 0, skewX: 0 }}
@@ -117,24 +119,19 @@ export default function Project() {
         </span>
       </motion.div>
 
-      {/* Slider Wrapper */}
       <div className="relative">
 
-        {/* Dynamic Left Arrow dgn Comic Tooltip */}
         <AnimatePresence>
           {canScrollLeft && (
             <motion.div
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -10 }}
-              // Hapus pointer-events-none, ganti jadi group & cursor-grab
               className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#111]/80 backdrop-blur-md border border-gray-700 flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.8)] text-white group cursor-grab hover:border-blue-500 transition-colors"
             >
-              {/* Balon Komik "SWIPE IT" */}
               <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 pointer-events-none z-40">
                 <div className="relative bg-[#1a1a1a] border border-blue-500/50 text-blue-400 text-[10px] font-mono tracking-widest uppercase px-3 py-1.5 rounded-lg shadow-[0_0_10px_rgba(59,130,246,0.3)] whitespace-nowrap">
                   Swipe it!
-                  {/* Buntut segitiga komik */}
                   <div className="absolute -bottom-[4px] left-1/2 -translate-x-1/2 w-2 h-2 bg-[#1a1a1a] border-b border-r border-blue-500/50 rotate-45"></div>
                 </div>
               </div>
@@ -144,7 +141,6 @@ export default function Project() {
           )}
         </AnimatePresence>
 
-        {/* Dynamic Right Arrow dgn Comic Tooltip */}
         <AnimatePresence>
           {canScrollRight && (
             <motion.div
@@ -153,11 +149,9 @@ export default function Project() {
               exit={{ opacity: 0, x: 10 }}
               className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#111]/80 backdrop-blur-md border border-gray-700 flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.8)] text-white group cursor-grab hover:border-blue-500 transition-colors"
             >
-              {/* Balon Komik "SWIPE IT" */}
               <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 pointer-events-none z-40">
                 <div className="relative bg-[#1a1a1a] border border-blue-500/50 text-blue-400 text-[10px] font-mono tracking-widest uppercase px-3 py-1.5 rounded-lg shadow-[0_0_10px_rgba(59,130,246,0.3)] whitespace-nowrap">
                   Swipe it!
-                  {/* Buntut segitiga komik */}
                   <div className="absolute -bottom-[4px] left-1/2 -translate-x-1/2 w-2 h-2 bg-[#1a1a1a] border-b border-r border-blue-500/50 rotate-45"></div>
                 </div>
               </div>
@@ -167,7 +161,6 @@ export default function Project() {
           )}
         </AnimatePresence>
 
-        {/* Track Carousel */}
         <motion.div 
           ref={carouselRef} 
           className="cursor-grab active:cursor-grabbing overflow-visible"
@@ -186,11 +179,15 @@ export default function Project() {
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ type: "spring", stiffness: 200, damping: 20, delay: index * 0.1 }}
               >
+                {/* 2. UPDATE WRAPPER KARTU */}
+                {/* Hapus whileHover bawaan framer motion, ganti pake event listener klik & mouse */}
                 <motion.div
+                  onClick={() => setActiveProject(activeProject === index ? null : index)} // Di-tap di HP bakal nutup/buka
+                  onMouseEnter={() => setActiveProject(index)} // Di-hover di desktop bakal buka
+                  onMouseLeave={() => setActiveProject(null)} // Mouse keluar bakal nutup
                   initial="rest"
-                  whileHover="hover"
-                  animate="rest"
-                  className="px-2 py-2 min-w-[320px] max-w-[320px] md:min-w-[400px] md:max-w-[400px] bg-[#111] border border-gray-800 rounded-2xl overflow-hidden flex flex-col group shadow-lg transition-colors hover:border-gray-600"
+                  animate={activeProject === index ? "hover" : "rest"} // Animasi jalan berdasarkan state
+                  className="px-2 py-2 min-w-[320px] max-w-[320px] md:min-w-[400px] md:max-w-[400px] bg-[#111] border border-gray-800 rounded-2xl overflow-hidden flex flex-col group shadow-lg transition-colors hover:border-gray-600 cursor-pointer"
                 >
                   {/* Thumbnail Image */}
                   <div className="relative h-48 md:h-56 overflow-hidden shrink-0 rounded-xl">
@@ -211,6 +208,7 @@ export default function Project() {
                     </h3>
                     
                     {/* ACCORDION ANIMATION: Deskripsi Sembunyi */}
+                    {/* Ini otomatis ngikutin trigger 'animate={...}' dari bungkus kartunya */}
                     <motion.div
                       variants={{
                         rest: { height: 0, opacity: 0 },
@@ -248,11 +246,6 @@ export default function Project() {
                           Code
                         </a>
                       )}
-                      {/* : (
-                        <div className="flex-1 py-2.5 rounded-lg border border-gray-800 text-gray-600 text-center font-semibold text-sm cursor-not-allowed">
-                          Private Repo
-                        </div>
-                      ) */}
 
                       {project.live && (
                         <a 
