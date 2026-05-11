@@ -13,7 +13,7 @@ export default function Experience() {
         "WordPress Developer: Mengembangkan landing page dan mengoptimasi performa website hingga menembus skor 90-100 di Google PageSpeed Insights. Dilengkapi optimasi SEO dan keamanan  berlapis.",
         "OJS Developer: Menangani instalasi end-to-end, konfigurasi server (cPanel), hingga penyesuaian UI/UX ekosistem Open Journal System (OJS) untuk berbagai publikasi akademik hingga siap production."
       ],
-      techStack: ["WordPress", "Elementor", "OJS", "cPanel", "LiteSpeed"]
+      techStack: ["WordPress", "Elementor", "OJS", "cPanel", "LiteSpeed Cache", "Yoast SEO"]
     },
     {
       company: "Alterra Academy",
@@ -24,7 +24,7 @@ export default function Experience() {
         "Dashboard Development: Membangun antarmuka Admin Dashboard yang user-friendly untuk platform e-commerce aquaculture, memfasilitasi manajemen produk hingga monitoring data secara efisien.",
         "Integration & Collaboration: Mengintegrasikan RESTful API untuk sinkronisasi data real-time. Terbiasa berkolaborasi lintas divisi (UI/UX, Backend, QA) dengan menerapkan alur kerja Git Flow.",
       ],
-      techStack: ["ReactJS", "TailwindCSS", "Axios", "Git Flow", "Vite"]
+      techStack: ["ReactJS", "TailwindCSS", "Axios", "Git Flow", "Vite", "Postman"]
     }
   ];
 

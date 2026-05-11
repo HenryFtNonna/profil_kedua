@@ -152,10 +152,10 @@ export default function AboutMe() {
               {/* Teks panjang otomatis pake Plus Jakarta Sans. Dikasih leading-relaxed biar gampang dibaca */}
               <div className="space-y-5 text-gray-400 text-base leading-relaxed">
                 <p>
-                  Halo! Saya Henry, Web Developer yang berdomisili di Yogyakarta. Latar belakang Teknik Komputer membuat saya melihat pengembangan web lebih dari sekadar antarmuka visual.
+                  Halo! Saya Henry, Web Developer yang berdomisili di Yogyakarta. Dengan Latar belakang Teknik Komputer membuat saya melihat pengembangan web lebih dari sekadar antarmuka visual.
                 </p>
                 <p>
-                  Saya menikmati proses membangun sistem dari nol—mulai dari merancang arsitektur aplikasi, mengelola ekosistem WordPress & OJS, hingga eksperimen integrasi IoT dengan cloud database.
+                  Saya menikmati proses membangun sistem dari nol mulai dari merancang arsitektur aplikasi, mengelola ekosistem WordPress & OJS, hingga eksperimen integrasi IoT dengan cloud database.
                 </p>
                 <p>
                   Saat ini, saya fokus pada teknologi web modern (React, Vue, Tailwind). Saya selalu excited berkolaborasi menciptakan solusi digital yang tidak hanya estetik, tapi juga benar-benar bekerja.
