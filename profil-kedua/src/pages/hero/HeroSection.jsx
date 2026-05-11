@@ -6,8 +6,8 @@ import profile3 from '../../assets/profil3.png';
 
 // --- IMPORT FONT AWESOME REACT WAY (BEST PRACTICE!) ---
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faLinkedinIn, faInstagram, faSpotify } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faLinkedinIn, faInstagram, faSpotify} from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope, faDownload } from "@fortawesome/free-solid-svg-icons";
 
 const MagneticIcon = ({ children, href, target, rel }) => {
   const ref = useRef(null);
@@ -190,25 +190,26 @@ export default function HeroSection() {
 
         <div className="mt-10 flex gap-4 justify-center lg:justify-start">
           <motion.a 
-            href="#projects" 
-            // UPDATE: Tambahin tracking-wide di tombol biar elegan
-            onClick={(e) => scrollToSection(e, 'projects')}
+            href="https://drive.google.com/file/d/1RoZ6Kpo2phFYb9u7whUWji_JIX3cau8n/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn bg-white text-black hover:bg-gray-200 border-none rounded-xl px-8 py-3 font-semibold tracking-wide"
             whileHover={{ scale: 1.05 }} 
             whileTap={{ scale: 0.95 }}  
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            View Projects
+            <FontAwesomeIcon icon={faDownload} />
+            <span>Download CV</span>
           </motion.a>
           
           <motion.a 
-            href="#contact" 
-            onClick={(e) => scrollToSection(e, 'contact')}
+            href="#projects" 
+            onClick={(e) => scrollToSection(e, 'projects')}
             className="btn btn-outline border border-gray-700 text-white hover:bg-gray-800 hover:text-white hover:border-gray-600 rounded-xl px-8 py-3 font-semibold tracking-wide"
             whileTap={{ scale: 0.95 }} 
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            Contact Me
+            View Projects
           </motion.a>
         </div>
       </motion.div>
