@@ -1,0 +1,8 @@
+html, body {
+  
+  /* FIX WHITE SPACE: Timpa warna dasar browser jadi warna gelap web lu (misal #050505 atau black) */
+  background-color: #050505; 
+  
+  /* FIX RUBBER-BANDING: Matiin efek membal pas scroll mentok atas/bawah di HP */
+  overscroll-behavior-y: none; 
+}

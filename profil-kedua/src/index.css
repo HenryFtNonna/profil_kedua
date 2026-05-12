@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* --- KONFIGURASI TAILWIND V4 --- */
+@theme {
+  /* Teks paragraf otomatis (class: font-sans) */
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  
+  /* Judul-judul gede (class: font-display) */
+  --font-display: "Geist", ui-sans-serif, system-ui, sans-serif;
+  
+  /* Elemen UI tech (class: font-mono) */
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+}
