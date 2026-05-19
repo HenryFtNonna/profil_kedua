@@ -7,6 +7,8 @@ import Image4 from '../../assets/matrixlp.png'
 import Image5 from '../../assets/duittt.png'
 import Image6 from '../../assets/matrixojs.png'
 import Image7 from '../../assets/henricrosshair.png'
+import Image8 from '../../assets/cekkhodam.png'
+
 
 
 export default function Project() {
@@ -50,6 +52,14 @@ export default function Project() {
       image: image1, 
       github: "https://github.com/HenryFtNonna/reactjs-tinggibadan",
       live: "https://henry-monitoring.vercel.app/"
+    },
+    {
+      title: "Henri Cek Khodam 👻",
+      desc: "Fun project untuk cek khodam dengan input nama target. Menggunakan Vue.js dengan tampilan clean dan simple.",
+      tech: ["Vue.js", "TailwindCSS", "vueuse/motion"],
+      image: Image8, 
+      github: "https://github.com/HenryFtNonna/henry-cekkhodam",
+      live: "https://henry-cekkhodam.vercel.app/"
     },
     {
       title: "Tepi Langit Restaurant 🍷",

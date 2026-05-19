@@ -10,7 +10,8 @@ import Certificates from './certificates/Certificates';
 import Contact from './contact/Contact';
 import Navbar from '../components/navbar/Navbar';
 import ScrollToTop from '../components/ScrollToTop';
-import Preloader from '../components/Preloader'; // <--- Import Navbar lu di sini
+import Preloader from '../components/Preloader';
+import Testimonials from './testimonials/Testimonials';
 
 import '../css/style.css'; 
 
@@ -86,6 +87,7 @@ export default function IndexPages() {
           <div id="about" className="scroll-mt-24 md:scroll-mt-32"><AboutMe /></div>
           <div id="skills" className="scroll-mt-24 md:scroll-mt-32"><SkillStack /></div>
           <div id="experience" className="scroll-mt-24 md:scroll-mt-32"><Experience /></div>
+          <div id="testimonials" className="scroll-mt-24 md:scroll-mt-32"><Testimonials /></div>
           <div id="education" className="scroll-mt-24 md:scroll-mt-32"><Education /></div>
           <div id="projects" className="scroll-mt-24 md:scroll-mt-32"><Project /></div>
           <div id="certificates" className="scroll-mt-24 md:scroll-mt-32"><Certificates /></div>
