@@ -6,6 +6,7 @@ import Image3 from '../../assets/certificates/CCNAN.jpg';
 import Image4 from '../../assets/certificates/CCNAS.jpg';
 import Image5 from '../../assets/certificates/KPPS.jpg';
 import Image6 from '../../assets/certificates/Medic.jpg';
+import Image7 from '../../assets/certificates/blkk.jpg';
 
 // --- KOMPONEN KHUSUS 3D HOVER CARD ---
 const CertificateCard = ({ cert, index, onClick }) => {
@@ -189,6 +190,15 @@ export default function Certificates() {
       desc: "Sertifikasi atas peran aktif sebagai tenaga medis lapangan dalam melakukan pemantauan kondisi kesehatan peserta.",
       images: [
         Image6
+      ]
+    },
+        {
+      title: "Sertifikat Pelatihan Kerja",
+      issuer: "BLKK Amumarta",
+      year: "2025",
+      desc: "Sertifikasi pelatihan kerja sebagai web developer di Balai Latihan Kerja Komunitas Amumarta.",
+      images: [
+        Image7
       ]
     }
   ];

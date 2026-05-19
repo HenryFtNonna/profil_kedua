@@ -17,8 +17,8 @@ export default function Testimonials() {
     {
       name: "Muhammad Muchson Attoyibi",
       title: "Mentee, Alterra Academy",
-      quote: "Mohan built a clean, responsive, and performant web application for us. Communication was smooth throughout. Highly recommended for any frontend needs.",
-      image: "https://placehold.co/150x150/111/white?text=CN"
+      quote: "Henry menunjukkan dedikasi yang luar apik selama belajar di Alterra Academy. Dia mampu mengeksekusi materi Front-End dengan baik dan menerapkannya menjadi aplikasi web yang fungsional dan responsif. Sikap profesionalnya, kemauan untuk terus belajar, dan penyelesaian tugas yang tepat waktu menjadi nilai tambah yang sangat baik untuk karirnya ke depan.",
+      image: "https://placehold.co/150x150/111/white?text=MA"
     }
   ];
 
