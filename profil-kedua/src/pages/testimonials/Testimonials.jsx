@@ -17,7 +17,7 @@ export default function Testimonials() {
     {
       name: "Muhammad Muchson Attoyibi",
       title: "Mentee, Alterra Academy",
-      quote: "Henry menunjukkan dedikasi yang luar apik selama belajar di Alterra Academy. Dia mampu mengeksekusi materi Front-End dengan baik dan menerapkannya menjadi aplikasi web yang fungsional dan responsif. Sikap profesionalnya, kemauan untuk terus belajar, dan penyelesaian tugas yang tepat waktu menjadi nilai tambah yang sangat baik untuk karirnya ke depan.",
+      quote: "Henry menunjukkan dedikasi yang apik selama belajar di Alterra Academy. Dia mampu mengeksekusi materi Front-End dengan baik dan menerapkannya menjadi aplikasi web yang fungsional dan responsif. Sikap profesionalnya, kemauan untuk terus belajar, dan penyelesaian tugas yang tepat waktu menjadi nilai tambah yang sangat baik untuk karirnya ke depan.",
       image: "https://placehold.co/150x150/111/white?text=MA"
     }
   ];
