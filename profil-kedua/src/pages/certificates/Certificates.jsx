@@ -7,6 +7,7 @@ import Image4 from '../../assets/certificates/CCNAS.jpg';
 import Image5 from '../../assets/certificates/KPPS.jpg';
 import Image6 from '../../assets/certificates/Medic.jpg';
 import Image7 from '../../assets/certificates/blkk.jpg';
+import Image8 from '../../assets/certificates/maganghub.jpg';
 
 // --- KOMPONEN KHUSUS 3D HOVER CARD ---
 const CertificateCard = ({ cert, index, onClick }) => {
@@ -101,10 +102,14 @@ const CertificateCard = ({ cert, index, onClick }) => {
 
 export default function Certificates() {
   const [selectedCert, setSelectedCert] = useState(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
-  // Nambahin state arah geser (1 buat ke kanan/next, -1 buat ke kiri/prev)
+  // State buat Modal Gambar
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+
+  // State buat Navigasi Grid (Kanan-Kiri)
+  const [currentGridPage, setCurrentGridPage] = useState(0);
+  const itemsPerPage = 6; // Tetep 6 item (2 baris x 3 kolom)
 
   useEffect(() => {
     if (selectedCert) {
@@ -115,34 +120,23 @@ export default function Certificates() {
     }
   }, [selectedCert]);
 
-  const handleNext = (e) => {
+  // Handler buat Modal Gambar
+  const handleNextImage = (e) => {
     e.stopPropagation(); 
-    setDirection(1); // Kasih tau animasi buat geser ke kiri
+    setDirection(1);
     setCurrentImageIndex((prev) => (prev + 1) % selectedCert.images.length);
   };
 
-  const handlePrev = (e) => {
+  const handlePrevImage = (e) => {
     e.stopPropagation(); 
-    setDirection(-1); // Kasih tau animasi buat geser ke kanan
+    setDirection(-1);
     setCurrentImageIndex((prev) => (prev === 0 ? selectedCert.images.length - 1 : prev - 1));
   };
 
-  // Logic Animasi Geser Kanan-Kiri
   const slideVariants = {
-    hidden: (dir) => ({
-      x: dir > 0 ? 200 : -200, // Kalo next, masuk dari kanan (200). Kalo prev, masuk dari kiri (-200)
-      opacity: 0,
-    }),
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: { type: "spring", stiffness: 300, damping: 30 }
-    },
-    exit: (dir) => ({
-      x: dir > 0 ? -200 : 200, // Kalo next, keluar ke kiri (-200). Kalo prev, keluar ke kanan (200)
-      opacity: 0,
-      transition: { duration: 0.2 }
-    })
+    hidden: (dir) => ({ x: dir > 0 ? 200 : -200, opacity: 0 }),
+    visible: { x: 0, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 30 } },
+    exit: (dir) => ({ x: dir > 0 ? -200 : 200, opacity: 0, transition: { duration: 0.2 } })
   };
 
   const certificates = [
@@ -151,59 +145,64 @@ export default function Certificates() {
       issuer: "Alterra Academy",
       year: "2024",
       desc: "Sertifikat kelulusan program MSIB dengan fokus pada pengembangan antarmuka web modern menggunakan ekosistem ReactJS.",
-      images: [
-        Image1,
-        Image2
-      ]
+      images: [Image1, Image2]
     },
     {
       title: "CCNA v7: Introduction to Networks",
       issuer: "Cisco Networking Academy",
       year: "2023",
       desc: "Sertifikasi keahlian dalam merancang, mengkonfigurasi, dan memelihara arsitektur jaringan komputer dan routing dasar.",
-      images: [
-        Image3
-      ]
+      images: [Image3]
     },
     {
       title: "CCNA v7: Switching, Routing...",
       issuer: "Cisco Networking Academy",
       year: "2023",
       desc: "Sertifikasi keahlian dalam operasional switch, optimasi inter-VLAN routing, dan manajemen dasar teknologi wireless.",
-      images: [
-        Image4
-      ]
+      images: [Image4]
     },
     {
-      title: "Piagam Penghargaan Anggota KPPS",
-      issuer: "Komisi Pemilihan Umum (KPU)",
-      year: "2024",
-      desc: "Penghargaan atas dedikasi dalam menjalankan tugas sebagai penyelenggara pemungutan dan penghitungan suara pada Pemilu.",
-      images: [
-        Image5
-      ]
+      title: "Kemnaker - Sertifikat MagangHub",
+      issuer: "Kemnaker RI - MagangHub",
+      year: "2026",
+      desc: "Sertifikasi atas keberhasilan menyelesaikan program magang kerja sebagai web developer di MagangHub, platform resmi Kementerian Ketenagakerjaan Republik Indonesia.",
+      images: [Image8]
     },
     {
       title: "Volunteer Certificate - Amikom Fest",
       issuer: "Universitas Amikom Yogyakarta",
       year: "2023",
       desc: "Sertifikasi atas peran aktif sebagai tenaga medis lapangan dalam melakukan pemantauan kondisi kesehatan peserta.",
-      images: [
-        Image6
-      ]
+      images: [Image6]
     },
-        {
+    {
       title: "Sertifikat Pelatihan Kerja",
       issuer: "BLKK Amumarta",
       year: "2025",
       desc: "Sertifikasi pelatihan kerja sebagai web developer di Balai Latihan Kerja Komunitas Amumarta.",
-      images: [
-        Image7
-      ]
-    }
+      images: [Image7]
+    },
+     {
+      title: "Piagam Penghargaan Anggota KPPS",
+      issuer: "Komisi Pemilihan Umum (KPU)",
+      year: "2024",
+      desc: "Penghargaan atas dedikasi dalam menjalankan tugas sebagai penyelenggara pemungutan dan penghitungan suara pada Pemilu.",
+      images: [Image5]
+    },
   ];
 
-  return (
+  // Logika Potong Array buat Navigasi Kanan-Kiri
+  const totalPages = Math.ceil(certificates.length / itemsPerPage);
+  
+  const currentCertificates = certificates.slice(
+    currentGridPage * itemsPerPage,
+    (currentGridPage + 1) * itemsPerPage
+  );
+
+  // Bikin array selalu isi 6 (Disumpel Kotak Hantu)
+  const paddedCertificates = Array.from({ length: itemsPerPage }, (_, i) => currentCertificates[i] || null);
+
+return (
     <div className="w-full relative">
       
       <motion.div 
@@ -221,12 +220,101 @@ export default function Certificates() {
         </div>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-        {certificates.map((cert, index) => (
-          <CertificateCard key={index} cert={cert} index={index} onClick={setSelectedCert} />
-        ))}
+      {/* CONTAINER UTAMA */}
+      <div className="relative w-full max-w-[1400px] mx-auto">
+
+        {/* TOMBOL KIRI (DESKTOP ONLY) - Pake hidden md:flex */}
+        {totalPages > 1 && (
+          <button
+            onClick={() => setCurrentGridPage(prev => Math.max(0, prev - 1))}
+            disabled={currentGridPage === 0}
+            className={`hidden md:flex absolute -left-4 lg:-left-16 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full items-center justify-center transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.8)] backdrop-blur-md group ${
+              currentGridPage === 0 
+                ? 'opacity-0 pointer-events-none' 
+                : 'text-gray-400 bg-[#111]/80 border border-gray-700 hover:border-white hover:text-white cursor-pointer'
+            }`}
+          >
+            <svg className="w-6 h-6 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+        )}
+
+        {/* Grid List */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 min-h-[400px]">
+          {paddedCertificates.map((cert, index) => (
+            cert ? (
+              <CertificateCard key={`${cert.title}-${index}`} cert={cert} index={index} onClick={setSelectedCert} />
+            ) : (
+              <div key={`empty-${index}`} className="w-full h-[350px] pointer-events-none hidden md:block"></div>
+            )
+          ))}
+        </div>
+
+        {/* TOMBOL KANAN (DESKTOP ONLY) - Pake hidden md:flex */}
+        {totalPages > 1 && (
+          <button
+            onClick={() => setCurrentGridPage(prev => Math.min(totalPages - 1, prev + 1))}
+            disabled={currentGridPage === totalPages - 1}
+            className={`hidden md:flex absolute -right-4 lg:-right-16 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full items-center justify-center transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.8)] backdrop-blur-md group ${
+              currentGridPage === totalPages - 1 
+                ? 'opacity-0 pointer-events-none' 
+                : 'text-gray-400 bg-[#111]/80 border border-gray-700 hover:border-white hover:text-white cursor-pointer'
+            }`}
+          >
+            <svg className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        )}
+
       </div>
 
+      {/* BOTTOM NAVIGATION (MOBILE BUTTONS & INDICATOR) */}
+      {totalPages > 1 && (
+        <div className="flex justify-center items-center mt-10 gap-6 font-mono text-sm">
+          
+          {/* TOMBOL KIRI (MOBILE ONLY) - Pake flex md:hidden */}
+          <button
+            onClick={() => setCurrentGridPage(prev => Math.max(0, prev - 1))}
+            disabled={currentGridPage === 0}
+            className={`flex md:hidden w-12 h-12 rounded-full items-center justify-center transition-all duration-300 ${
+              currentGridPage === 0 
+                ? 'text-gray-700 bg-transparent border border-gray-800 cursor-not-allowed' 
+                : 'text-gray-400 bg-[#111] border border-gray-700 hover:text-white active:scale-95 shadow-lg cursor-pointer'
+            }`}
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+
+          {/* INDIKATOR 1 / 2 (Tampil di Desktop & Mobile) */}
+          <div className="flex items-center gap-2">
+            <span className="text-white font-bold text-lg">{currentGridPage + 1}</span>
+            <span className="text-gray-600">/</span>
+            <span className="text-gray-500">{totalPages}</span>
+          </div>
+
+          {/* TOMBOL KANAN (MOBILE ONLY) - Pake flex md:hidden */}
+          <button
+            onClick={() => setCurrentGridPage(prev => Math.min(totalPages - 1, prev + 1))}
+            disabled={currentGridPage === totalPages - 1}
+            className={`flex md:hidden w-12 h-12 rounded-full items-center justify-center transition-all duration-300 ${
+              currentGridPage === totalPages - 1 
+                ? 'text-gray-700 bg-transparent border border-gray-800 cursor-not-allowed' 
+                : 'text-gray-400 bg-[#111] border border-gray-700 hover:text-white active:scale-95 shadow-lg cursor-pointer'
+            }`}
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+
+        </div>
+      )}
+
+      {/* MODAL FULLSCREEN GAMBAR (Tetap Sama) */}
       <AnimatePresence>
         {selectedCert && (
           <motion.div
@@ -236,6 +324,7 @@ export default function Certificates() {
             onClick={() => setSelectedCert(null)}
             className="fixed inset-0 z-[999999] bg-[#050505]/90 backdrop-blur-md flex items-center justify-center p-4 md:p-8 cursor-zoom-out"
           >
+            {/* Isi modalnya sama persis kayak sebelumnya */}
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -255,7 +344,7 @@ export default function Certificates() {
 
               {selectedCert.images.length > 1 && (
                 <button 
-                  onClick={handlePrev}
+                  onClick={handlePrevImage}
                   className="absolute left-2 md:-left-12 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 bg-black/50 hover:bg-white border border-gray-700 hover:border-white rounded-full flex items-center justify-center text-white hover:text-black transition-all z-50 cursor-pointer backdrop-blur-sm"
                 >
                   <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -270,14 +359,11 @@ export default function Certificates() {
                     key={currentImageIndex} 
                     src={selectedCert.images[currentImageIndex]} 
                     alt={`${selectedCert.title} - Page ${currentImageIndex + 1}`}
-
-                    // Ini settingan baru panggil variant geser kanan-kiri
                     custom={direction}
                     variants={slideVariants}
                     initial="hidden"
                     animate="visible"
                     exit="exit"
-                    
                     className="w-full h-auto max-h-[85vh] object-contain"
                   />
                 </AnimatePresence>
@@ -285,7 +371,7 @@ export default function Certificates() {
 
               {selectedCert.images.length > 1 && (
                 <button 
-                  onClick={handleNext}
+                  onClick={handleNextImage}
                   className="absolute right-2 md:-right-12 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 bg-black/50 hover:bg-white border border-gray-700 hover:border-white rounded-full flex items-center justify-center text-white hover:text-black transition-all z-50 cursor-pointer backdrop-blur-sm"
                 >
                   <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">

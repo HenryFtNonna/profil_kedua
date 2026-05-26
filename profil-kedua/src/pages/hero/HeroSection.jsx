@@ -56,7 +56,7 @@ export default function HeroSection() {
   const audioRef = useRef(null);
 
   const [textIndex, setTextIndex] = useState(0);
-  const words = ["HENRY.", "WEB DEV."];
+  const words = ["HENRY.", "WEB DEV.", "TECH SUPP."]; // UPDATE: Tambahin kata baru "PROBLEM SOLVER" biar makin keren
 
 // Tunda animasi teks jalan selama 6 detik biar ga keburu ganti pas masih loading
   useEffect(() => {
